@@ -1,0 +1,15 @@
+@import '../custom/variable.scss';
+
+.info-list {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  &-item {
+    min-width: 85px;
+
+    &-active {
+      color: $mainColor;
+    }
+  }
+}

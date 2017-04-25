@@ -1,0 +1,17 @@
+@import '../custom/variable.scss';
+
+.dashboard {
+
+  display: flex;
+  flex-direction: row;
+
+  &-main {
+    margin-right: $padding;
+    flex: 3;
+  }
+
+  &-side {
+    flex: 1;
+  }
+
+}
