@@ -45,7 +45,6 @@ function Volume({ toggle, volume, onChangeVolume }) {
 
   return (
     <div className={volumeClass}>
-      <div>
         <h2 className="volume-number">{volume}</h2>
         <VolumeSlider volume={volume} onChangeVolume={onChangeVolume}/>
         <div className="volume-muter">
@@ -53,7 +52,6 @@ function Volume({ toggle, volume, onChangeVolume }) {
             <i className={muteClass} />
           </ButtonInline>
         </div>
-      </div>
     </div>
   );
 }

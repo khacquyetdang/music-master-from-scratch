@@ -3,16 +3,18 @@
 .volume {
 
   background: $nav;
-  position: fixed;
+  //position: fixed;
   right: 5em;
   bottom: $padding * 3;
-  width: $padding * 5;
+  /*width: $padding * 5;
   height: $padding * 15;
-  max-height: $padding * 15;
+  max-height: $padding * 15;*/
   border: $darkBorder;
-  overflow: auto;
+  //overflow: auto;
   opacity: 0;
   pointer-events: none;
+  display: flex;
+  justify-content: start;
 
   transition: height 0.2s;
   -webkit-transition: opacity 0.2s;

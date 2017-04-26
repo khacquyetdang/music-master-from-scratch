@@ -151,13 +151,8 @@ class Player extends React.Component {
               </ButtonInline>
             </div>
             <div className="player-content-action">
-              <ButtonInline onClick={() => onSetToggle(toggleTypes.VOLUME)}>
-                <i className={muteClass}/>
-              </ButtonInline>
-            </div>
-            <div className="player-content-action">
               <ButtonInline>
-                <Volume />                
+                <Volume />
               </ButtonInline>
             </div>
 

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import { setAccessToken, setNewReleases} from '../actions';
 import * as SpotifyWebApi from 'spotify-web-api-js';
