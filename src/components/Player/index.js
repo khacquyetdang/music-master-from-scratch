@@ -8,6 +8,7 @@ import * as actions from '../../actions/index';
 import * as toggleTypes from '../../constants/toggleTypes';
 //import { addAccessTokenWith } from '../../services/api';
 import ButtonInline from '../../components/ButtonInline';
+import Volume from '../../components/Volume';
 import ReactTooltip from 'react-tooltip';
 import Clipboard from 'react-clipboard.js';
 
@@ -142,25 +143,31 @@ class Player extends React.Component {
           <div className="player-content-action">
             <ButtonInline onClick={() => onSetToggle(toggleTypes.PLAYLIST)}>
               <i className="fa fa-th-list"/> {playlist.length}
-            </ButtonInline>
-          </div>
-          <div className="player-content-action">
-            <ButtonInline onClick={onSetShuffleMode}>
-              <i className={shuffleClass}/>
-            </ButtonInline>
-          </div>
-          <div className="player-content-action">
-            <ButtonInline onClick={() => onSetToggle(toggleTypes.VOLUME)}>
-              <i className={muteClass}/>
-            </ButtonInline>
-          </div>
-          <div className="player-content-action">
-            {currentUser
-              ? <ButtonInline onClick={() => onLike(track)}>
-                  <i className={likeClass}/>
-                </ButtonInline>
+              </ButtonInline>
+            </div>
+            <div className="player-content-action">
+              <ButtonInline onClick={onSetShuffleMode}>
+                <i className={shuffleClass}/>
+              </ButtonInline>
+            </div>
+            <div className="player-content-action">
+              <ButtonInline onClick={() => onSetToggle(toggleTypes.VOLUME)}>
+                <i className={muteClass}/>
+              </ButtonInline>
+            </div>
+            <div className="player-content-action">
+              <ButtonInline>
+                <Volume />                
+              </ButtonInline>
+            </div>
+
+            <div className="player-content-action">
+              {currentUser
+                ? <ButtonInline onClick={() => onLike(track)}>
+                <i className={likeClass}/>
+              </ButtonInline>
               : null
-}
+            }
           </div>
           <div className="player-content-action">
             <a data-tip data-for="global">
@@ -185,60 +192,60 @@ class Player extends React.Component {
     //const playerClass = classNames('player', {'player-visible' : 1});
 
     return <div className={playerClass}>{this.renderNav()}</div>;
-    //return <div className="player player-visible">{this.renderNav()}</div>;
+      //return <div className="player player-visible">{this.renderNav()}</div>;
+
+    }
 
   }
 
-}
-
-function mapStateToProps(state) {
-  /*return {
+  function mapStateToProps(state) {
+    /*return {
     activeTrackId: 0,
     isPlaying: true,
     entities: [],
     playlist: [],
     isInShuffleMode: false,
     volume: 70
-  };*/
-  //console.log("player state", state);
-  return {
-    activeTrackId: state.player.activeTrackId,
-    isPlaying: state.player.isPlaying,
-    entities: state.entities,
-    topTracks: state.topTracks,
-    playlist: state.player.playlist,
-    isInShuffleMode: state.player.isInShuffleMode,
-    volume: state.player.volume,
+    };*/
+    //console.log("player state", state);
+    return {
+      activeTrackId: state.player.activeTrackId,
+      isPlaying: state.player.isPlaying,
+      entities: state.entities,
+      topTracks: state.topTracks,
+      playlist: state.player.playlist,
+      isInShuffleMode: state.player.isInShuffleMode,
+      volume: state.player.volume,
+    };
+  }
+
+  function mapDispatchToProps(dispatch) {
+    return {
+      onTogglePlayTrack: bindActionCreators(actions.togglePlayTrack, dispatch),
+      onSetShuffleMode: bindActionCreators(actions.toggleShuffleMode, dispatch),
+      onActivateIteratedTrack: bindActionCreators(actions.activateIteratedTrack, dispatch),
+      onSetToggle: bindActionCreators(actions.setToggle, dispatch),
+      /*
+      onTogglePlayTrack: bindActionCreators(actions.togglePlayTrack, dispatch),
+      onActivateIteratedTrack: bindActionCreators(actions.activateIteratedTrack, dispatch),
+      onLike: bindActionCreators(actions.like, dispatch),
+      onSetShuffleMode: bindActionCreators(actions.toggleShuffleMode, dispatch),*/
+    };
+  }
+
+  Player.propTypes = {
+    currentUser: PropTypes.object,
+    activeTrackId: PropTypes.string,
+    isPlaying: PropTypes.bool,
+    entities: PropTypes.object,
+    topTracks: PropTypes.object,
+    playlist: PropTypes.array,
+    onTogglePlayTrack: PropTypes.func,
+    onSetToggle: PropTypes.func,
+    onActivateIteratedTrack: PropTypes.func,
+    onLike: PropTypes.func,
+    onSetShuffleMode: PropTypes.func,
+    isInShuffleMode: PropTypes.bool
   };
-}
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onTogglePlayTrack: bindActionCreators(actions.togglePlayTrack, dispatch),
-    onSetShuffleMode: bindActionCreators(actions.toggleShuffleMode, dispatch),
-    onActivateIteratedTrack: bindActionCreators(actions.activateIteratedTrack, dispatch),
-    onSetToggle: bindActionCreators(actions.setToggle, dispatch),
-    /*
-    onTogglePlayTrack: bindActionCreators(actions.togglePlayTrack, dispatch),
-    onActivateIteratedTrack: bindActionCreators(actions.activateIteratedTrack, dispatch),
-    onLike: bindActionCreators(actions.like, dispatch),
-    onSetShuffleMode: bindActionCreators(actions.toggleShuffleMode, dispatch),*/
-  };
-}
-
-Player.propTypes = {
-  currentUser: PropTypes.object,
-  activeTrackId: PropTypes.string,
-  isPlaying: PropTypes.bool,
-  entities: PropTypes.object,
-  topTracks: PropTypes.object,
-  playlist: PropTypes.array,
-  onTogglePlayTrack: PropTypes.func,
-  onSetToggle: PropTypes.func,
-  onActivateIteratedTrack: PropTypes.func,
-  onLike: PropTypes.func,
-  onSetShuffleMode: PropTypes.func,
-  isInShuffleMode: PropTypes.bool
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Player);
+  export default connect(mapStateToProps, mapDispatchToProps)(Player);

@@ -14,7 +14,7 @@ function VolumeSlider({ volume, onChangeVolume }) {
       min={0}
       max={100}
       value={volume}
-      orientation="vertical"
+      orientation="horizontal"
       onChange={onChangeVolume}
     />
   );
@@ -24,7 +24,8 @@ function Volume({ toggle, volume, onChangeVolume }) {
   const volumeClass = classNames(
     'volume',
     {
-      'volume-visible': toggle[toggleTypes.VOLUME]
+      //'volume-visible': toggle[toggleTypes.VOLUME]
+      'volume-visible': true
     }
   );
 
