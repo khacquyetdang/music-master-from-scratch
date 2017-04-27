@@ -16,7 +16,7 @@ function VolumeSlider({ volume, onChangeVolume }) {
       value={volume}
       orientation="horizontal"
       onChange={onChangeVolume}
-    />
+      />
   );
 }
 
@@ -32,26 +32,38 @@ function Volume({ toggle, volume, onChangeVolume }) {
   const isMuted = !volume;
 
   const onMute = isMuted ?
-    () => onChangeVolume(70) :
-    () => onChangeVolume(0);
+  () => onChangeVolume(70) :
+  () => onChangeVolume(0);
 
   const muteClass = classNames(
-  'fa',
+    'fa',
     {
       'fa-volume-up': !isMuted,
       'fa-volume-off': isMuted,
     }
   );
 
+
+  // origine
+  // return (
+  //   <div className={volumeClass}>
+  //        <h2 className="volume-number">{volume}</h2>
+  //        <VolumeSlider volume={volume} onChangeVolume={onChangeVolume}/>
+  //       <div className="volume-muter">
+  //         <ButtonInline onClick={onMute}>
+  //           <i className={muteClass} />
+  //         </ButtonInline>
+  //       </div>
+  //   </div>
+  // );
   return (
     <div className={volumeClass}>
-        <h2 className="volume-number">{volume}</h2>
-        <VolumeSlider volume={volume} onChangeVolume={onChangeVolume}/>
-        <div className="volume-muter">
-          <ButtonInline onClick={onMute}>
-            <i className={muteClass} />
-          </ButtonInline>
-        </div>
+      <VolumeSlider volume={volume} onChangeVolume={onChangeVolume}/>
+      <div className="volume-muter">
+        <ButtonInline onClick={onMute}>
+          <i className={muteClass} />
+        </ButtonInline>
+      </div>
     </div>
   );
 }
