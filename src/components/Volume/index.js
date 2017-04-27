@@ -16,6 +16,7 @@ function VolumeSlider({ volume, onChangeVolume }) {
       value={volume}
       orientation="horizontal"
       onChange={onChangeVolume}
+      tooltip={false}
       />
   );
 }
